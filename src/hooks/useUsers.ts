@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getAllUsers, getUserById } from "../services/userApi";
+import { getAllUsers, getUserById } from "../services/adminApi";
 import type { User } from "../types/entities";
 import type { APIResponse } from "../types/api";
 

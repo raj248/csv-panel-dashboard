@@ -4,14 +4,15 @@ import type { APIResponse } from "../types/api";
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000/api";
 
-// ✅ GET all users
-export const getAllUsers = async (): Promise<APIResponse<User[]>> => {
-  const res = await axios.get<APIResponse<User[]>>(`${API_URL}/user`);
-  return res.data; // keep success + error + data
-};
-
-// ✅ GET user by id
-export const getUserById = async (id: string): Promise<APIResponse<User>> => {
-  const res = await axios.get<APIResponse<User>>(`${API_URL}/user/${id}`);
+// update password of the user from old to new
+export const updatePassword = async (
+  oldPass: string,
+  newPass: string
+): Promise<APIResponse<User>> => {
+  const res = await axios.put<APIResponse<User>>(
+    `${API_URL}/auth/update-password`,
+    { oldPass, newPass },
+    { withCredentials: true }
+  );
   return res.data;
 };

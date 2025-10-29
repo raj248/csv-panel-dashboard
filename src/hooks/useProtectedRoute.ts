@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { checkUserSession } from "../services/authApi"; // must return { success, data: { isAdmin } }
 
-export const useProtectAdminRoute = () => {
+export const useProtectedRoute = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
