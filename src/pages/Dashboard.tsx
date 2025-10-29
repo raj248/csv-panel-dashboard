@@ -1,5 +1,6 @@
 // src/pages/Dashboard.tsx
 import { columns } from "@/components/columns/user";
+import { CreateUserDialog } from "@/components/dialog/CreateUserDialog";
 import { DataTable } from "@/components/table/user-table";
 import { useProtectedRoute } from "@/hooks/useProtectedRoute";
 import { useUsers } from "@/hooks/useUsers";
@@ -16,6 +17,10 @@ const Dashboard: React.FC = () => {
   console.log(users?.data.length);
   return (
     <div style={{ padding: 24 }} className="bg-background">
+      <div className="flex justify-end mb-4">
+        <CreateUserDialog />
+      </div>
+
       <DataTable
         columns={[
           ...columns,
