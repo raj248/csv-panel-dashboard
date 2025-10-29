@@ -1,53 +1,39 @@
-// src/layouts/MainLayout.tsx
-import React from "react";
-import { Outlet, useNavigate } from "react-router-dom";
-import { Layout, Menu, Spin, Button } from "antd";
-import { useAuth } from "../context/auth-context";
+// src/components/layout.tsx
 
-const { Header, Content, Sider } = Layout;
+// import { SidebarProvider } from "@/components/ui/sidebar";
+// import { AppSidebar } from "@/components/layout/app-sidebar";
+import { Toaster } from "@/components/ui/sonner";
+import { Outlet } from "react-router-dom";
+import { useTheme } from "../components/theme/theme-provider";
+import { cn } from "@/lib/utils"; // adjust path if needed
+import Header from "../layout/header";
 
-const MainLayout: React.FC = () => {
-  const { isUser, loading, logout } = useAuth();
-  const navigate = useNavigate();
-
-  if (loading) return <Spin tip="Loading..." style={{ marginTop: 100 }} />;
-
-  if (!isUser) {
-    navigate("/");
-    return null;
-  }
-
-  const handleLogout = async () => {
-    await logout();
-    navigate("/");
-  };
+export default function MainLayout() {
+  const { resolvedTheme } = useTheme();
 
   return (
-    <Layout style={{ minHeight: "100vh" }}>
-      <Sider>
-        <Menu theme="dark" defaultSelectedKeys={["dashboard"]} mode="inline">
-          <Menu.Item key="dashboard" onClick={() => navigate("/dashboard")}>
-            Dashboard
-          </Menu.Item>
-          <Menu.Item key="logout">
-            <Button
-              type="link"
-              onClick={handleLogout}
-              style={{ color: "white" }}
-            >
-              Logout
-            </Button>
-          </Menu.Item>
-        </Menu>
-      </Sider>
-      <Layout>
-        <Header style={{ background: "#fff", padding: 0 }}>CSV Panel</Header>
-        <Content style={{ margin: "16px" }}>
-          <Outlet />
-        </Content>
-      </Layout>
-    </Layout>
+    // <SidebarProvider
+    //   style={
+    //     {
+    //       "--sidebar-width": "calc(var(--spacing) * 72)",
+    //       "--header-height": "calc(var(--spacing) * 12)",
+    //     } as React.CSSProperties
+    //   }
+    // >
+    <div className="flex min-h-screen w-screen">
+      {/* <AppSidebar /> */}
+      <main
+        className={cn(
+          "flex-1 transition-colors",
+          resolvedTheme === "dark" ? "bg-neutral-950" : "bg-background"
+        )}
+      >
+        {/* header with breadcrumbs */}
+        <Header />
+        <Outlet />
+        <Toaster />
+      </main>
+    </div>
+    // </SidebarProvider>
   );
-};
-
-export default MainLayout;
+}
