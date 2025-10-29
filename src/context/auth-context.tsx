@@ -1,0 +1,49 @@
+import { checkUserSession, logoutUser } from "../services/authApi";
+import { createContext, useContext, useEffect, useState } from "react";
+
+interface AuthContextType {
+  isUser: boolean;
+  loading: boolean;
+  logout: () => Promise<void>;
+  refresh: () => Promise<void>;
+}
+
+const AuthContext = createContext<AuthContextType | null>(null);
+
+export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+  const [isUser, setIsUser] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  const refresh = async () => {
+    setLoading(true);
+    const res = await checkUserSession().catch((err) => {
+      console.error(err);
+      return { success: false, data: null };
+    });
+    // const res = { success: true, data: { isAdmin: true } }; // dummy
+    setIsUser(res.success && res.data?.isUser === true);
+    setLoading(false);
+  };
+
+  const logout = async () => {
+    await logoutUser(); // API call to clear cookie/session
+    setLoading(true);
+    setIsUser(false);
+  };
+
+  useEffect(() => {
+    refresh();
+  }, []);
+
+  return (
+    <AuthContext.Provider value={{ isUser, loading, logout, refresh }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
+
+export const useAuth = () => {
+  const ctx = useContext(AuthContext);
+  if (!ctx) throw new Error("useAuth must be used within AuthProvider");
+  return ctx;
+};
