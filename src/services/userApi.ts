@@ -25,3 +25,35 @@ export const getUploadEvents = async (): Promise<APIResponse<any[]>> => {
   );
   return res.data;
 };
+
+// get all books
+export const getAllBooks = async (): Promise<APIResponse<any[]>> => {
+  const res = await axios.get<APIResponse<any[]>>(`${API_URL}/user/books/all`, {
+    withCredentials: true,
+  });
+  return res.data;
+};
+
+// get user books
+export const getUserBooks = async (): Promise<APIResponse<any[]>> => {
+  const res = await axios.get<APIResponse<any[]>>(`${API_URL}/user/books`, {
+    withCredentials: true,
+  });
+  return res.data;
+};
+
+// book entries by date range
+export const getBookEntriesByDateRange = async (
+  fromDate: string,
+  toDate: string
+): Promise<APIResponse<any[]>> => {
+  const res = await axios.get<APIResponse<any[]>>(
+    // `${API_URL}/user/data/${fromDate}/${toDate}`,
+    `${API_URL}/user/data`,
+    {
+      params: { fromDate, toDate },
+      withCredentials: true,
+    }
+  );
+  return res.data;
+};

@@ -8,6 +8,8 @@ import UserOverview from "./pages/Overview";
 import FileUploader from "./pages/Upload";
 import UploadEventsPage from "./pages/UploadEvents";
 import AllUploadEventsPage from "./pages/AllUploadEvents";
+import UserBooksPage from "./pages/UserBooks";
+import AllBooksPage from "./pages/AllBooks";
 
 function App() {
   return (
@@ -26,6 +28,8 @@ function App() {
                 path="/upload-events/all"
                 element={<AllUploadEventsPage />}
               />
+              <Route path="/books" element={<UserBooksPage />} />
+              <Route path="/books/all" element={<AllBooksPage />} />
             </Route>
           </Routes>
         </BrowserRouter>

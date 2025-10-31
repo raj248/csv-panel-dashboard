@@ -12,7 +12,12 @@ import {
 } from "../services/adminApi";
 import type { User } from "../types/entities";
 import type { APIResponse } from "../types/api";
-import { getUploadEvents } from "@/services/userApi";
+import {
+  getAllBooks,
+  getBookEntriesByDateRange,
+  getUploadEvents,
+  getUserBooks,
+} from "@/services/userApi";
 
 // 🔹 Get all users
 export const useUsers = (isAdmin: boolean) =>
@@ -109,5 +114,30 @@ export const useUploadEvents = () => {
   return useQuery<APIResponse<{ fromDate: string; toDate: string }[]>>({
     queryKey: ["uploadEvents"],
     queryFn: getUploadEvents,
+  });
+};
+
+// get user books
+export const useUserBooks = () => {
+  return useQuery<APIResponse<any[]>>({
+    queryKey: ["userBooks"],
+    queryFn: getUserBooks,
+  });
+};
+
+// get all books
+export const useAllBooks = () => {
+  return useQuery<APIResponse<any[]>>({
+    queryKey: ["allBooks"],
+    queryFn: getAllBooks,
+  });
+};
+
+// get book entries by date range
+export const useBookEntriesByDateRange = (fromDate: string, toDate: string) => {
+  return useQuery<APIResponse<any[]>>({
+    queryKey: ["bookEntries", fromDate, toDate],
+    queryFn: () => getBookEntriesByDateRange(fromDate, toDate),
+    enabled: !!fromDate && !!toDate,
   });
 };

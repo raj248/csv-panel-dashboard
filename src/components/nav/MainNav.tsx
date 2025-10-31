@@ -61,6 +61,25 @@ export function MainNav() {
           </NavigationMenuLink>
         </NavigationMenuItem>
 
+        <NavigationMenuItem>
+          <NavigationMenuLink
+            asChild
+            className={cn(navigationMenuTriggerStyle(), "cursor-pointer")}
+          >
+            <a onClick={() => navigate("/books")}>Publishings</a>
+          </NavigationMenuLink>
+        </NavigationMenuItem>
+
+        {isAdmin && (
+          <NavigationMenuItem>
+            <NavigationMenuLink
+              asChild
+              className={cn(navigationMenuTriggerStyle(), "cursor-pointer")}
+            >
+              <a onClick={() => navigate("/books/all")}>Publishings</a>
+            </NavigationMenuLink>
+          </NavigationMenuItem>
+        )}
         {isAdmin && (
           <NavigationMenuItem>
             <NavigationMenuLink
