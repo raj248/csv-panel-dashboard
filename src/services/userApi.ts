@@ -16,3 +16,12 @@ export const updatePassword = async (
   );
   return res.data;
 };
+
+// get api/user/upload-events
+export const getUploadEvents = async (): Promise<APIResponse<any[]>> => {
+  const res = await axios.get<APIResponse<any[]>>(
+    `${API_URL}/user/upload-events`,
+    { withCredentials: true }
+  );
+  return res.data;
+};

@@ -15,6 +15,7 @@ import { cn } from "@/lib/utils";
 import { useNavigate } from "react-router-dom";
 import { User, FileSpreadsheet, LayoutDashboard } from "lucide-react";
 import { useAuth } from "@/context/auth-context";
+import { getUploadEvents } from "@/services/userApi";
 
 export function MainNav() {
   const { isAdmin, isUser, loading, logout, refresh } = useAuth();
@@ -35,8 +36,11 @@ export function MainNav() {
               >
                 View analytics, activity, and system overview.
               </ListItem>
-              <ListItem title="Reports" onClick={() => navigate("/overview")}>
-                Export data insights and performance reports.
+              <ListItem
+                title="Reports"
+                onClick={() => navigate("/upload-events")}
+              >
+                Data insights and performance reports.
               </ListItem>
               <ListItem
                 title="Settings"
@@ -47,6 +51,26 @@ export function MainNav() {
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
+
+        <NavigationMenuItem>
+          <NavigationMenuLink
+            asChild
+            className={cn(navigationMenuTriggerStyle(), "cursor-pointer")}
+          >
+            <a onClick={() => navigate("/upload-events")}>Reports</a>
+          </NavigationMenuLink>
+        </NavigationMenuItem>
+
+        {isAdmin && (
+          <NavigationMenuItem>
+            <NavigationMenuLink
+              asChild
+              className={cn(navigationMenuTriggerStyle(), "cursor-pointer")}
+            >
+              <a onClick={() => navigate("/upload-events/all")}>All Reports</a>
+            </NavigationMenuLink>
+          </NavigationMenuItem>
+        )}
 
         {/* Users */}
         {isAdmin && (
@@ -93,7 +117,13 @@ export function MainNav() {
             asChild
             className={cn(navigationMenuTriggerStyle(), "cursor-pointer")}
           >
-            <a onClick={() => navigate("/docs")}>Docs</a>
+            <a
+              onClick={() => {
+                getUploadEvents().then((res) => console.log(res));
+              }}
+            >
+              Debugs
+            </a>
           </NavigationMenuLink>
         </NavigationMenuItem>
       </NavigationMenuList>

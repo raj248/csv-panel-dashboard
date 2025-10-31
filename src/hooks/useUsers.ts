@@ -2,14 +2,17 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   createUser,
   deleteUser,
+  getAllUploadEvents,
   getAllUsers,
   getUserById,
   resetUserPassword,
   updateRole,
   updateUser,
+  type AllEvents,
 } from "../services/adminApi";
 import type { User } from "../types/entities";
 import type { APIResponse } from "../types/api";
+import { getUploadEvents } from "@/services/userApi";
 
 // 🔹 Get all users
 export const useUsers = (isAdmin: boolean) =>
@@ -90,5 +93,21 @@ export const useResetUserPassword = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["users"] });
     },
+  });
+};
+
+//get all events
+export const useAllUploadEvents = () => {
+  return useQuery<APIResponse<AllEvents[]>>({
+    queryKey: ["allUploadEvents"],
+    queryFn: getAllUploadEvents,
+  });
+};
+
+// get upload event
+export const useUploadEvents = () => {
+  return useQuery<APIResponse<{ fromDate: string; toDate: string }[]>>({
+    queryKey: ["uploadEvents"],
+    queryFn: getUploadEvents,
   });
 };

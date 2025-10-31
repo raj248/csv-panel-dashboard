@@ -6,6 +6,8 @@ import Dashboard from "./pages/Dashboard";
 import { ThemeProvider } from "./components/theme/theme-provider";
 import UserOverview from "./pages/Overview";
 import FileUploader from "./pages/Upload";
+import UploadEventsPage from "./pages/UploadEvents";
+import AllUploadEventsPage from "./pages/AllUploadEvents";
 
 function App() {
   return (
@@ -19,6 +21,11 @@ function App() {
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/overview" element={<UserOverview />} />
               <Route path="/upload" element={<FileUploader />} />
+              <Route path="/upload-events" element={<UploadEventsPage />} />
+              <Route
+                path="/upload-events/all"
+                element={<AllUploadEventsPage />}
+              />
             </Route>
           </Routes>
         </BrowserRouter>
