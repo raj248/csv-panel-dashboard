@@ -16,6 +16,7 @@ const Login: React.FC = () => {
       await loginUser(values.username, values.password); // API call
       await refresh(); // update auth context
       message.success("Logged in successfully");
+      console.log("navigating to dashboard");
       navigate("/dashboard");
     } catch (err: any) {
       message.error(err.response?.data?.message || "Login failed");

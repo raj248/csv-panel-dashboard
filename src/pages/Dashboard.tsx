@@ -2,19 +2,21 @@
 import { columns } from "@/components/columns/user";
 import { CreateUserDialog } from "@/components/dialog/CreateUserDialog";
 import { DataTable } from "@/components/table/user-table";
+import { useAuth } from "@/context/auth-context";
 import { useProtectedRoute } from "@/hooks/useProtectedRoute";
 import { useUsers } from "@/hooks/useUsers";
 import React, { useState } from "react";
 
 const Dashboard: React.FC = () => {
-  useProtectedRoute();
-  const { data: users, isLoading } = useUsers();
+  const { isAdmin } = useAuth();
+  const { data: users, isLoading } = useUsers(isAdmin);
   const [selectedUser, setSelectedUser] = useState<any>(null);
+  useProtectedRoute();
+  console.log("Inside dashboard");
 
   if (isLoading) return <p>Loading...</p>;
   if (!users?.success) return <p>Error: {users?.error ?? "Unknown error"}</p>;
 
-  console.log(users?.data.length);
   return (
     <div style={{ padding: 24 }} className="bg-background">
       <div className="flex justify-end mb-4">

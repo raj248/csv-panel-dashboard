@@ -12,10 +12,11 @@ import type { User } from "../types/entities";
 import type { APIResponse } from "../types/api";
 
 // 🔹 Get all users
-export const useUsers = () =>
+export const useUsers = (isAdmin: boolean) =>
   useQuery<APIResponse<User[]>>({
     queryKey: ["users"],
     queryFn: getAllUsers,
+    enabled: !!isAdmin,
   });
 
 // 🔹 Get one user

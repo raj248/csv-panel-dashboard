@@ -4,6 +4,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import { ThemeProvider } from "./components/theme/theme-provider";
+import UserOverview from "./pages/Overview";
+import FileUploader from "./pages/Upload";
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
 
             <Route element={<MainLayout />}>
               <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/overview" element={<UserOverview />} />
+              <Route path="/upload" element={<FileUploader />} />
             </Route>
           </Routes>
         </BrowserRouter>

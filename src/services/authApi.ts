@@ -21,12 +21,11 @@ export const loginUser = async (
 };
 
 export const checkUserSession = async (): Promise<
-  APIResponse<{ isUser: boolean }>
+  APIResponse<{ isUser: boolean; isAdmin: boolean }>
 > => {
-  const res = await axios.get<APIResponse<{ isUser: boolean }>>(
-    `${API_URL}/auth/check`,
-    { withCredentials: true }
-  );
+  const res = await axios.get<
+    APIResponse<{ isUser: boolean; isAdmin: boolean }>
+  >(`${API_URL}/auth/check`, { withCredentials: true });
   return res.data;
 };
 
