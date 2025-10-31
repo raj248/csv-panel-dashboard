@@ -5,9 +5,12 @@ import type { APIResponse } from "../types/api";
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000/api";
 
-export async function uploadFile(file: File) {
+export async function uploadFile(file: File, email: string) {
   const formData = new FormData();
   formData.append("file", file);
+  formData.append("email", email);
+  formData.append("fromDate", "2023-01-01");
+  formData.append("toDate", "2023-12-31");
 
   try {
     const response = await axios.post<APIResponse<string>>(

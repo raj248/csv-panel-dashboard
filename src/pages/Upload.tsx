@@ -10,7 +10,7 @@ export default function FileUploader() {
     setStatus("Uploading...");
 
     try {
-      const result = await uploadFile(file);
+      const result = await uploadFile(file, "user3@example.com");
       console.log("Uploaded Data:", result);
       setStatus("Upload successful ✅");
     } catch (err) {
