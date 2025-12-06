@@ -21,6 +21,13 @@ export function MainNav() {
   const { isAdmin, isUser, loading, logout, refresh } = useAuth();
   const navigate = useNavigate();
 
+  NavigationMenuIndicator;
+  User;
+  FileSpreadsheet;
+  isUser;
+  loading;
+  logout;
+  refresh;
   return (
     <NavigationMenu>
       <NavigationMenuList className="flex-wrap">
@@ -42,25 +49,43 @@ export function MainNav() {
               >
                 Data insights and performance reports.
               </ListItem>
-              <ListItem
+              {/* <ListItem
                 title="Settings"
                 onClick={() => navigate("/dashboard/settings")}
               >
                 Configure admin settings and preferences.
+              </ListItem> */}
+            </ul>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+
+        {/* Publishings */}
+        <NavigationMenuItem>
+          <NavigationMenuTrigger>Publishings</NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <ul className="grid w-[300px] gap-3 p-4 md:w-[400px]">
+              {/* <ListItem
+                title="All Files"
+                onClick={() => navigate("/publishings")}
+              >
+                Browse and manage user CSV or XLSX uploads.
+              </ListItem> */}
+              <ListItem title="Upload New" onClick={() => navigate("/upload")}>
+                Upload a new publishing or data file.
               </ListItem>
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
 
-        <NavigationMenuItem>
+        {/* <NavigationMenuItem>
           <NavigationMenuLink
             asChild
             className={cn(navigationMenuTriggerStyle(), "cursor-pointer")}
           >
             <a onClick={() => navigate("/upload-events")}>Reports</a>
           </NavigationMenuLink>
-        </NavigationMenuItem>
-
+        </NavigationMenuItem> */}
+        {/* 
         <NavigationMenuItem>
           <NavigationMenuLink
             asChild
@@ -68,7 +93,7 @@ export function MainNav() {
           >
             <a onClick={() => navigate("/books")}>Publishings</a>
           </NavigationMenuLink>
-        </NavigationMenuItem>
+        </NavigationMenuItem> */}
 
         {isAdmin && (
           <NavigationMenuItem>
@@ -92,7 +117,7 @@ export function MainNav() {
         )}
 
         {/* Users */}
-        {isAdmin && (
+        {/* {isAdmin && (
           <NavigationMenuItem>
             <NavigationMenuTrigger>Users</NavigationMenuTrigger>
             <NavigationMenuContent>
@@ -110,25 +135,7 @@ export function MainNav() {
               </ul>
             </NavigationMenuContent>
           </NavigationMenuItem>
-        )}
-
-        {/* Publishings */}
-        <NavigationMenuItem>
-          <NavigationMenuTrigger>Publishings</NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className="grid w-[300px] gap-3 p-4 md:w-[400px]">
-              <ListItem
-                title="All Files"
-                onClick={() => navigate("/publishings")}
-              >
-                Browse and manage user CSV or XLSX uploads.
-              </ListItem>
-              <ListItem title="Upload New" onClick={() => navigate("/upload")}>
-                Upload a new publishing or data file.
-              </ListItem>
-            </ul>
-          </NavigationMenuContent>
-        </NavigationMenuItem>
+        )} */}
 
         {/* Simple links */}
         <NavigationMenuItem>

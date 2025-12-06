@@ -11,6 +11,7 @@ const Dashboard: React.FC = () => {
   const { isAdmin } = useAuth();
   const { data: users, isLoading } = useUsers(isAdmin);
   const [selectedUser, setSelectedUser] = useState<any>(null);
+  selectedUser;
   useProtectedRoute();
   console.log("Inside dashboard");
 
