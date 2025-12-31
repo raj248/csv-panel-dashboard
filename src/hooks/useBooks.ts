@@ -1,5 +1,10 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { createBook, deleteBook, updateBook } from "@/services/bookApi";
+import {
+  createBook,
+  deleteBook,
+  getBookByIsbn,
+  updateBook,
+} from "@/services/bookApi";
 
 // useCreateBook
 export const useCreateBook = () => {
@@ -35,5 +40,14 @@ export const useDeleteBook = () => {
       queryClient.invalidateQueries({ queryKey: ["userBooks"] });
       queryClient.invalidateQueries({ queryKey: ["allBooks"] });
     },
+  });
+};
+
+// useGetBookByIsbn
+export const useGetBookByIsbn = (isbn: string) => {
+  return useQuery({
+    queryKey: ["bookByIsbn", isbn],
+    queryFn: () => getBookByIsbn(isbn),
+    enabled: !!isbn,
   });
 };

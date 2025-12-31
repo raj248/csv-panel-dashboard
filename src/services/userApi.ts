@@ -1,5 +1,5 @@
 import axios from "axios";
-import type { User } from "../types/entities";
+import type { Book, User } from "../types/entities";
 import type { APIResponse } from "../types/api";
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000/api";
@@ -35,10 +35,11 @@ export const getAllBooks = async (): Promise<APIResponse<any[]>> => {
 };
 
 // get user books
-export const getUserBooks = async (): Promise<APIResponse<any[]>> => {
-  const res = await axios.get<APIResponse<any[]>>(`${API_URL}/user/books`, {
+export const getUserBooks = async (): Promise<APIResponse<Book[]>> => {
+  const res = await axios.get<APIResponse<Book[]>>(`${API_URL}/user/books`, {
     withCredentials: true,
   });
+  console.log(res.status);
   return res.data;
 };
 

@@ -5,13 +5,15 @@ import { DataTable } from "@/components/table/user-table";
 import { useAuth } from "@/context/auth-context";
 import { useProtectedRoute } from "@/hooks/useProtectedRoute";
 import { useUsers } from "@/hooks/useUsers";
-import React, { useState } from "react";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Authors: React.FC = () => {
   const { isAdmin } = useAuth();
   const { data: users, isLoading } = useUsers(isAdmin);
-  const [selectedUser, setSelectedUser] = useState<any>(null);
-  selectedUser;
+  // selectedUser;
+  const navigate = useNavigate();
+
   useProtectedRoute();
   console.log("Inside dashboard");
 
@@ -27,32 +29,33 @@ const Authors: React.FC = () => {
       <DataTable
         columns={[
           ...columns,
-          {
-            id: "actions",
-            header: "Actions",
-            cell: (row) => {
-              return (
-                <div className="flex gap-2">
-                  <button
-                    className="text-blue-500 hover:underline"
-                    onClick={() => console.log("Edit", row.row.original)}
-                  >
-                    Edit
-                  </button>
-                  <button
-                    className="text-red-500 hover:underline"
-                    onClick={() => console.log("Delete", row.row.original)}
-                  >
-                    Delete
-                  </button>
-                </div>
-              );
-            },
-          },
+          // {
+          //   id: "actions",
+          //   header: "Actions",
+          //   cell: (row) => {
+          //     return (
+          //       <div className="flex gap-2">
+          //         <button
+          //           className="text-blue-500 hover:underline"
+          //           onClick={() => console.log("Edit", row.row.original)}
+          //         >
+          //           Edit
+          //         </button>
+          //         <button
+          //           className="text-red-500 hover:underline"
+          //           onClick={() => console.log("Delete", row.row.original)}
+          //         >
+          //           Delete
+          //         </button>
+          //       </div>
+          //     );
+          //   },
+          // },
         ]}
         data={users.data}
         tableType="user"
-        onRowClick={(user) => setSelectedUser(user)}
+        onRowClick={(user) => navigate(`/admin/authors/${user.id}`)}
+        // onRowClick={(user) => setSelectedUser(user)}
       />
     </div>
   );

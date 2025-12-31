@@ -21,7 +21,12 @@ export const loginUser = async (
 };
 
 export const checkUserSession = async (): Promise<
-  APIResponse<{ isUser: boolean; isAdmin: boolean }>
+  APIResponse<{
+    isUser: boolean;
+    isAdmin: boolean;
+    name?: string;
+    email?: string;
+  }>
 > => {
   const res = await axios.get<
     APIResponse<{ isUser: boolean; isAdmin: boolean }>

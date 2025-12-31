@@ -18,7 +18,7 @@ export const useProtectedRoute = () => {
         // const res = { success: true, data: { isAdmin: true } }; // dummy
         if (!res.data?.isAdmin && res.data?.isUser) {
           // alert("Unauthorized access.");
-          navigate("/overview", { replace: true });
+          // navigate("/overview", { replace: true });
         }
         if (!res.success || !res.data?.isUser) {
           // alert("Session expired or unauthorized access.");

@@ -1,5 +1,5 @@
 // src/pages/Dashboard.tsx
-import React, { useState } from "react";
+import React from "react";
 import {
   BarChart,
   Bar,
@@ -10,7 +10,6 @@ import {
   ResponsiveContainer,
   LineChart,
   Line,
-  Legend,
 } from "recharts";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { columns } from "@/components/columns/user";
@@ -19,7 +18,7 @@ import { DataTable } from "@/components/table/user-table";
 import { useAuth } from "@/context/auth-context";
 import { useProtectedRoute } from "@/hooks/useProtectedRoute";
 import { useUsers } from "@/hooks/useUsers";
-import { BookOpen, DollarSign, TrendingUp, Users } from "lucide-react";
+import { BookOpen, DollarSign, Users } from "lucide-react";
 
 const WEEKLY_SALES_DATA = [
   { week: "Week 1", units: 45, revenue: 850 },
@@ -35,7 +34,6 @@ const WEEKLY_SALES_DATA = [
 const Dashboard: React.FC = () => {
   const { isAdmin } = useAuth();
   const { data: users, isLoading } = useUsers(isAdmin);
-  const [selectedUser, setSelectedUser] = useState<any>(null);
 
   useProtectedRoute();
 
@@ -151,7 +149,7 @@ const Dashboard: React.FC = () => {
               {
                 id: "actions",
                 header: "Actions",
-                cell: (row) => (
+                cell: () => (
                   <div className="flex gap-2">
                     <button className="text-sm text-blue-500 hover:underline">
                       Edit
@@ -165,7 +163,6 @@ const Dashboard: React.FC = () => {
             ]}
             data={users?.data || []}
             tableType="user"
-            onRowClick={(user) => setSelectedUser(user)}
           />
         </div>
       )}

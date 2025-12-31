@@ -1,21 +1,17 @@
 "use client";
 
-import * as React from "react";
 import {
   NavigationMenu,
-  NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuIndicator,
   NavigationMenuLink,
   NavigationMenuList,
-  NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
 import { useNavigate } from "react-router-dom";
-import { User, FileSpreadsheet, LayoutDashboard } from "lucide-react";
+import { User, FileSpreadsheet } from "lucide-react";
 import { useAuth } from "@/context/auth-context";
-import { getUploadEvents } from "@/services/userApi";
 
 export function MainNav() {
   const { isAdmin, isUser, loading, logout, refresh } = useAuth();
@@ -78,7 +74,7 @@ export function MainNav() {
               asChild
               className={cn(navigationMenuTriggerStyle(), "cursor-pointer")}
             >
-              <a onClick={() => navigate("/authors")}>Authors</a>
+              <a onClick={() => navigate("/admin/authors")}>Authors</a>
             </NavigationMenuLink>
           </NavigationMenuItem>
         )}
@@ -183,35 +179,35 @@ export function MainNav() {
 }
 
 // 🧩 Small helper component
-function ListItem({
-  title,
-  icon,
-  children,
-  onClick,
-}: {
-  title: string;
-  icon?: React.ReactNode;
-  children?: React.ReactNode;
-  onClick: () => void;
-}) {
-  return (
-    <li>
-      <NavigationMenuLink
-        asChild
-        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground"
-      >
-        <a onClick={onClick}>
-          <div className="text-sm font-medium leading-none flex items-center gap-3">
-            {icon}
-            {title}
-          </div>
-          {children && (
-            <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-              {children}
-            </p>
-          )}
-        </a>
-      </NavigationMenuLink>
-    </li>
-  );
-}
+// function ListItem({
+//   title,
+//   icon,
+//   children,
+//   onClick,
+// }: {
+//   title: string;
+//   icon?: React.ReactNode;
+//   children?: React.ReactNode;
+//   onClick: () => void;
+// }) {
+//   return (
+//     <li>
+//       <NavigationMenuLink
+//         asChild
+//         className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground"
+//       >
+//         <a onClick={onClick}>
+//           <div className="text-sm font-medium leading-none flex items-center gap-3">
+//             {icon}
+//             {title}
+//           </div>
+//           {children && (
+//             <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+//               {children}
+//             </p>
+//           )}
+//         </a>
+//       </NavigationMenuLink>
+//     </li>
+//   );
+// }

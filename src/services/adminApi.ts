@@ -35,7 +35,7 @@ export const getAllUploadEvents = async (): Promise<
 
 // GET user by id
 export const getUserById = async (id: string): Promise<APIResponse<User>> => {
-  const res = await axios.get<APIResponse<User>>(`${API_URL}/auth/user/${id}`, {
+  const res = await axios.get<APIResponse<User>>(`${API_URL}/user/${id}`, {
     withCredentials: true,
   });
   return res.data;
@@ -94,7 +94,7 @@ export const updateUser = async (
 // delete user
 export const deleteUser = async (id: string): Promise<APIResponse<null>> => {
   const res = await axios.delete<APIResponse<null>>(
-    `${API_URL}/auth/user/${id}`,
+    `${API_URL}/auth/delete-user/${id}`,
     { withCredentials: true }
   );
   return res.data;

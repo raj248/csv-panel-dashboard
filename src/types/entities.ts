@@ -16,6 +16,7 @@ export interface Book {
   price?: number;
   printYear?: number;
   author?: string;
+  user: User;
   createdAt: string;
   updatedAt: string;
 }

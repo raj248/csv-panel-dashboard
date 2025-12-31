@@ -28,7 +28,7 @@ export const useUsers = (isAdmin: boolean) =>
   });
 
 // 🔹 Get one user
-export const useUser = (id: string) =>
+export const useUserById = (id: string) =>
   useQuery<APIResponse<User>>({
     queryKey: ["user", id],
     queryFn: () => getUserById(id),

@@ -5,6 +5,7 @@ interface AuthContextType {
   isUser: boolean;
   isAdmin: boolean;
   loading: boolean;
+  user: { name: string; email: string };
   logout: () => Promise<void>;
   refresh: () => Promise<void>;
 }
@@ -15,6 +16,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [isUser, setIsUser] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState({ name: "", email: "" });
 
   const refresh = async () => {
     setLoading(true);
@@ -25,6 +27,11 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     // const res = { success: true, data: { isAdmin: true } }; // dummy
     setIsUser(res.success && res.data?.isUser === true);
     setIsAdmin(res.success && res.data?.isAdmin === true);
+    setUser({
+      name: res.success ? res.data?.name ?? "" : "",
+      email: res.success ? res.data?.email ?? "" : "",
+    });
+
     setLoading(false);
   };
 
@@ -40,7 +47,9 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ isUser, isAdmin, loading, logout, refresh }}>
+    <AuthContext.Provider
+      value={{ isUser, isAdmin, loading, user, logout, refresh }}
+    >
       {children}
     </AuthContext.Provider>
   );

@@ -11,6 +11,9 @@ import AllUploadEventsPage from "./pages/AllUploadEvents";
 import UserBooksPage from "./pages/UserBooks";
 import AllBooksPage from "./pages/AllBooks";
 import Authors from "./pages/Authors";
+import ProfilePage from "./pages/Profile";
+import BookDetail from "./pages/BookDetail";
+import UserDetailPage from "./pages/UserDetail";
 
 function App() {
   return (
@@ -22,7 +25,10 @@ function App() {
 
             <Route element={<MainLayout />}>
               <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/authors" element={<Authors />} />
+              <Route path="/admin/authors" element={<Authors />} />
+              <Route path="/admin/authors/:id" element={<UserDetailPage />} />
+
+              <Route path="/profile" element={<ProfilePage />} />
 
               <Route path="/overview" element={<UserOverview />} />
               <Route path="/upload" element={<FileUploader />} />
@@ -32,6 +38,7 @@ function App() {
                 element={<AllUploadEventsPage />}
               />
               <Route path="/books" element={<UserBooksPage />} />
+              <Route path="/books/:isbn" element={<BookDetail />} />
               <Route path="/books/all" element={<AllBooksPage />} />
             </Route>
           </Routes>
