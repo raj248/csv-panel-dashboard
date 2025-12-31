@@ -10,6 +10,7 @@ import UploadEventsPage from "./pages/UploadEvents";
 import AllUploadEventsPage from "./pages/AllUploadEvents";
 import UserBooksPage from "./pages/UserBooks";
 import AllBooksPage from "./pages/AllBooks";
+import Authors from "./pages/Authors";
 
 function App() {
   return (
@@ -21,6 +22,8 @@ function App() {
 
             <Route element={<MainLayout />}>
               <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/authors" element={<Authors />} />
+
               <Route path="/overview" element={<UserOverview />} />
               <Route path="/upload" element={<FileUploader />} />
               <Route path="/upload-events" element={<UploadEventsPage />} />

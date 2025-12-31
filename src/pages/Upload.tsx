@@ -4,7 +4,7 @@ import * as XLSX from "xlsx";
 export default function FileUploader() {
   const [file, setFile] = useState<File | null>(null);
   const [status, setStatus] = useState<string>("");
-  const [headerRow, setHeaderRow] = useState<number>(2); // default: row 3 (0-based index)
+  const [headerRow, setHeaderRow] = useState<number>(3); // default: row 3 (0-based index)
   const [previewData, setPreviewData] = useState<any[]>([]);
   const [csvOutput, setCsvOutput] = useState<string>("");
 
@@ -29,6 +29,7 @@ export default function FileUploader() {
     console.log("Trimmed CSV: ", trimmedCsv);
     setCsvOutput(trimmedCsv);
 
+    // TODO: Upload File to server
     setStatus("File parsed ✅");
   };
 

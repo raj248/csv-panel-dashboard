@@ -32,7 +32,69 @@ export function MainNav() {
     <NavigationMenu>
       <NavigationMenuList className="flex-wrap">
         {/* Dashboard */}
-        <NavigationMenuItem>
+        {isAdmin ? (
+          <NavigationMenuItem>
+            <NavigationMenuLink
+              asChild
+              className={cn(navigationMenuTriggerStyle(), "cursor-pointer")}
+            >
+              <a onClick={() => navigate("/dashboard")}>Dashboard</a>
+            </NavigationMenuLink>
+          </NavigationMenuItem>
+        ) : (
+          <NavigationMenuItem>
+            <NavigationMenuLink
+              asChild
+              className={cn(navigationMenuTriggerStyle(), "cursor-pointer")}
+            >
+              <a onClick={() => navigate("/dashboard")}>Dashboard</a>
+            </NavigationMenuLink>
+          </NavigationMenuItem>
+        )}
+
+        {isAdmin ? (
+          <NavigationMenuItem>
+            <NavigationMenuLink
+              asChild
+              className={cn(navigationMenuTriggerStyle(), "cursor-pointer")}
+            >
+              <a onClick={() => navigate("/books/all")}>All Publishings</a>
+            </NavigationMenuLink>
+          </NavigationMenuItem>
+        ) : (
+          <NavigationMenuItem>
+            <NavigationMenuLink
+              asChild
+              className={cn(navigationMenuTriggerStyle(), "cursor-pointer")}
+            >
+              <a onClick={() => navigate("/books")}>Publishings</a>
+            </NavigationMenuLink>
+          </NavigationMenuItem>
+        )}
+
+        {isAdmin && (
+          <NavigationMenuItem>
+            <NavigationMenuLink
+              asChild
+              className={cn(navigationMenuTriggerStyle(), "cursor-pointer")}
+            >
+              <a onClick={() => navigate("/authors")}>Authors</a>
+            </NavigationMenuLink>
+          </NavigationMenuItem>
+        )}
+
+        {isAdmin && (
+          <NavigationMenuItem>
+            <NavigationMenuLink
+              asChild
+              className={cn(navigationMenuTriggerStyle(), "cursor-pointer")}
+            >
+              <a onClick={() => navigate("/upload-events/all")}>All Reports</a>
+            </NavigationMenuLink>
+          </NavigationMenuItem>
+        )}
+
+        {/* <NavigationMenuItem>
           <NavigationMenuTrigger>Dashboard</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid w-[300px] gap-3 p-4 md:w-[400px] lg:w-[500px]">
@@ -49,33 +111,33 @@ export function MainNav() {
               >
                 Data insights and performance reports.
               </ListItem>
-              {/* <ListItem
+              <ListItem
                 title="Settings"
                 onClick={() => navigate("/dashboard/settings")}
               >
                 Configure admin settings and preferences.
-              </ListItem> */}
+              </ListItem>
             </ul>
           </NavigationMenuContent>
-        </NavigationMenuItem>
+        </NavigationMenuItem> */}
 
         {/* Publishings */}
-        <NavigationMenuItem>
+        {/* <NavigationMenuItem>
           <NavigationMenuTrigger>Publishings</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid w-[300px] gap-3 p-4 md:w-[400px]">
-              {/* <ListItem
+              <ListItem
                 title="All Files"
                 onClick={() => navigate("/publishings")}
               >
                 Browse and manage user CSV or XLSX uploads.
-              </ListItem> */}
+              </ListItem>
               <ListItem title="Upload New" onClick={() => navigate("/upload")}>
                 Upload a new publishing or data file.
               </ListItem>
             </ul>
           </NavigationMenuContent>
-        </NavigationMenuItem>
+        </NavigationMenuItem> */}
 
         {/* <NavigationMenuItem>
           <NavigationMenuLink
@@ -94,27 +156,6 @@ export function MainNav() {
             <a onClick={() => navigate("/books")}>Publishings</a>
           </NavigationMenuLink>
         </NavigationMenuItem> */}
-
-        {isAdmin && (
-          <NavigationMenuItem>
-            <NavigationMenuLink
-              asChild
-              className={cn(navigationMenuTriggerStyle(), "cursor-pointer")}
-            >
-              <a onClick={() => navigate("/books/all")}>Publishings</a>
-            </NavigationMenuLink>
-          </NavigationMenuItem>
-        )}
-        {isAdmin && (
-          <NavigationMenuItem>
-            <NavigationMenuLink
-              asChild
-              className={cn(navigationMenuTriggerStyle(), "cursor-pointer")}
-            >
-              <a onClick={() => navigate("/upload-events/all")}>All Reports</a>
-            </NavigationMenuLink>
-          </NavigationMenuItem>
-        )}
 
         {/* Users */}
         {/* {isAdmin && (
@@ -136,22 +177,6 @@ export function MainNav() {
             </NavigationMenuContent>
           </NavigationMenuItem>
         )} */}
-
-        {/* Simple links */}
-        <NavigationMenuItem>
-          <NavigationMenuLink
-            asChild
-            className={cn(navigationMenuTriggerStyle(), "cursor-pointer")}
-          >
-            <a
-              onClick={() => {
-                getUploadEvents().then((res) => console.log(res));
-              }}
-            >
-              Debugs
-            </a>
-          </NavigationMenuLink>
-        </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>
   );

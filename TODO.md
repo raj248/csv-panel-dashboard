@@ -7,7 +7,7 @@ admin pages
   - KPIs (sold, )
   - sale stats (all books, all users, all sales)
 - user management
-- sale data upload with preview
+- sale data upload with preview (select author, book, date, file)
 
 user pages
 
