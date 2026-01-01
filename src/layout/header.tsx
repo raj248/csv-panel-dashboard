@@ -14,10 +14,11 @@ import { logoutUser } from "@/services/authApi";
 import { useAuth } from "@/context/auth-context";
 import { ModeToggle } from "../components/theme/mode-toggle";
 import { MainNav } from "@/components/nav/MainNav";
+import { UploadSalesDialog } from "@/components/dialog/UploadSalesDialog"; // New Import
 
 function Header() {
   const navigate = useNavigate();
-  const { user } = useAuth(); // Assuming your context provides this
+  const { user, isAdmin } = useAuth();
   const style = "glass";
   const avatarUri = `https://api.dicebear.com/9.x/${style}/svg?seed=${
     user?.name || "default"
@@ -33,7 +34,10 @@ function Header() {
       <div className="flex w-full items-center gap-4">
         <MainNav />
 
-        <div className="ml-auto flex items-center gap-4">
+        <div className="ml-auto flex items-center gap-2 lg:gap-4">
+          {/* ADMIN ONLY UPLOAD BUTTON */}
+          {isAdmin && <UploadSalesDialog />}
+
           <ModeToggle />
 
           <DropdownMenu>
