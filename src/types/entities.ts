@@ -14,8 +14,11 @@ export interface Book {
   isbn: string;
   name: string;
   price?: number;
-  printYear?: number;
+  year?: number;
   author?: string;
+  language?: string;
+  category?: string;
+  publisher?: string;
   user: User;
   createdAt: string;
   updatedAt: string;

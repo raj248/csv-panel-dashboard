@@ -19,7 +19,7 @@ const UserBooksPage: React.FC = () => {
     { id: "name", header: "Book Name", accessorKey: "name" },
     // { id: "author", header: "Author", accessorKey: "author" },
     { id: "price", header: "Price", accessorKey: "price" },
-    { id: "printYear", header: "Print Year", accessorKey: "printYear" },
+    { id: "year", header: "Print Year", accessorKey: "year" },
   ];
 
   return (

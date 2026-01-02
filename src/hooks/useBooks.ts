@@ -18,6 +18,20 @@ export const useCreateBook = () => {
   });
 };
 
+import { createBulkBooks } from "@/services/bookApi";
+
+// useCreateBulkBooks
+export const useCreateBulkBooks = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: createBulkBooks,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["userBooks"] });
+      queryClient.invalidateQueries({ queryKey: ["allBooks"] });
+    },
+  });
+};
+
 // useUpdateBook
 export const useUpdateBook = () => {
   const queryClient = useQueryClient();

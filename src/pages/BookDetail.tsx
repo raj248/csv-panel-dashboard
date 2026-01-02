@@ -12,6 +12,8 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { EditBookDialog } from "@/components/dialog/EditBookDialog";
+
+import { DeleteBookDialog } from "@/components/dialog/DeleteBookDialog"; // New Import
 import { Calendar, DollarSign, Hash, User as UserIcon } from "lucide-react";
 import { useGetBookByIsbn } from "@/hooks/useBooks";
 import { useAuth } from "@/context/auth-context";
@@ -50,7 +52,7 @@ const BookDetail = () => {
 
             <Calendar className="h-4 w-4 text-muted-foreground" />
             <span className="text-sm text-muted-foreground">
-              Printed: {bookData.printYear}
+              Printed: {bookData.year}
             </span>
             <DollarSign className="h-4 w-4 text-muted-foreground ml-4" />
             <span className="text-sm text-muted-foreground">
@@ -58,13 +60,18 @@ const BookDetail = () => {
             </span>
             <UserIcon className="h-4 w-4 text-muted-foreground ml-4" />
             <span className="text-sm text-muted-foreground">
-              Author: {bookData.user.name}
+              Author: {bookData.author ?? bookData.user.name}
             </span>
             <Badge variant="secondary">{bookData.user.email}</Badge>
           </div>
-          <div className="flex items-center gap-2 mt-2"></div>
         </div>
-        {isAdmin && <EditBookDialog book={bookResp.data} />}
+        {/* ADMIN ACTIONS AREA */}
+        {isAdmin && (
+          <div className="flex gap-2">
+            <EditBookDialog book={bookData} />
+            <DeleteBookDialog bookId={bookData.id} bookName={bookData.name} />
+          </div>
+        )}
       </div>
 
       <div className="grid gap-4 md:grid-cols-4">

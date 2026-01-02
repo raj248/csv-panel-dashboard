@@ -15,6 +15,18 @@ export const createBook = async (bookData: any): Promise<APIResponse<any>> => {
   return res.data;
 };
 
+// create bulk books
+export const createBulkBooks = async (
+  booksData: any[]
+): Promise<APIResponse<any>> => {
+  const res = await axios.post<APIResponse<any>>(
+    `${API_URL}/user/books/bulk`,
+    booksData,
+    { withCredentials: true }
+  );
+  return res.data;
+};
+
 // update book
 export const updateBook = async (
   id: string,

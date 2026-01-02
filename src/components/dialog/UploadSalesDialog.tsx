@@ -33,7 +33,6 @@ import {
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import {
   FileUp,
-  Download,
   CheckCircle2,
   AlertCircle,
   Loader2,
@@ -47,7 +46,7 @@ export function UploadSalesDialog() {
   const [file, setFile] = useState<File | null>(null);
   const [headerRow, setHeaderRow] = useState<number>(0);
   const [previewData, setPreviewData] = useState<any[]>([]);
-  const [csvOutput, setCsvOutput] = useState<string>("");
+  // const [csvOutput, setCsvOutput] = useState<string>("");
   const [isParsing, setIsParsing] = useState(false);
 
   const { data: authors } = useUsers(true);
@@ -73,10 +72,10 @@ export function UploadSalesDialog() {
           return;
         }
         setPreviewData(jsonData);
-        const trimmedCsv = XLSX.utils.sheet_to_csv(
-          XLSX.utils.json_to_sheet(jsonData)
-        );
-        setCsvOutput(trimmedCsv);
+        // const trimmedCsv = XLSX.utils.sheet_to_csv(
+        //   XLSX.utils.json_to_sheet(jsonData)
+        // );
+        // setCsvOutput(trimmedCsv);
         toast.success("File parsed successfully");
       } catch (error) {
         toast.error("Parsing failed");
