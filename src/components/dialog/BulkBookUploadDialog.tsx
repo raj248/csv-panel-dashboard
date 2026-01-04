@@ -50,7 +50,6 @@ export function BulkBookUploadDialog() {
   const [headerRow, setHeaderRow] = useState<number>(0);
   const [previewData, setPreviewData] = useState<any[]>([]);
   const [isParsing, setIsParsing] = useState(false);
-  const [defaultAuthorId, setDefaultAuthorId] = useState<string>("");
 
   const { data: authors } = useUsers(true);
   const { mutate: createBulkBooks } = useCreateBulkBooks();
@@ -84,17 +83,13 @@ export function BulkBookUploadDialog() {
   };
 
   const handleBulkUpload = async () => {
-    if (!defaultAuthorId) return toast.error("Please select a default author");
-
-    // In a real app, you'd likely have a /bulk endpoint.
-    // Here, we simulate the logic for the mapped data.
     const booksToCreate = previewData.map((row) => ({
       isbn: row.ISBN || row.isbn || "",
       name: row.Title || row.name || row.Book || "",
       author: row.Author || row.author || "",
       price: parseFloat(row.Price || row.price || 0),
       year: parseInt(row.Year || row.year || new Date().getFullYear()),
-      authorId: defaultAuthorId,
+      // authorId: defaultAuthorId,
       publisher: row.Publisher || row.publisher || "",
       category: row.Category || row.category || "",
       language: row.Language || row.language || "English",
@@ -106,7 +101,6 @@ export function BulkBookUploadDialog() {
         setOpen(false);
         setFile(null);
         setPreviewData([]);
-        setDefaultAuthorId("");
         setHeaderRow(0);
       },
       onError: (error) => {
@@ -151,7 +145,7 @@ export function BulkBookUploadDialog() {
         <div className="flex-1 overflow-y-auto space-y-6 py-4">
           {/* Configuration Section */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 bg-muted/30 p-5 rounded-xl border border-dashed border-muted-foreground/50">
-            <div className="md:col-span-2 space-y-3">
+            {/* <div className="md:col-span-2 space-y-3">
               <Label>Default Author Assignment</Label>
               <Select
                 onValueChange={setDefaultAuthorId}
@@ -171,7 +165,7 @@ export function BulkBookUploadDialog() {
               <p className="text-[10px] text-muted-foreground">
                 All books in this spreadsheet will be linked to this author.
               </p>
-            </div>
+            </div> */}
 
             <div className="space-y-3">
               <Label>Excel Row Index (Header)</Label>
@@ -275,7 +269,7 @@ export function BulkBookUploadDialog() {
               Discard
             </Button>
             <Button
-              disabled={previewData.length === 0 || !defaultAuthorId}
+              disabled={previewData.length === 0}
               size="lg"
               className="px-10 gap-2"
               onClick={handleBulkUpload}
