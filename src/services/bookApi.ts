@@ -7,11 +7,9 @@ const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000/api";
 
 // create book
 export const createBook = async (bookData: any): Promise<APIResponse<any>> => {
-  const res = await axios.post<APIResponse<any>>(
-    `${API_URL}/user/books`,
-    bookData,
-    { withCredentials: true }
-  );
+  const res = await axios.post<APIResponse<any>>(`${API_URL}/books`, bookData, {
+    withCredentials: true,
+  });
   return res.data;
 };
 
@@ -20,7 +18,7 @@ export const createBulkBooks = async (
   booksData: any[]
 ): Promise<APIResponse<any>> => {
   const res = await axios.post<APIResponse<any>>(
-    `${API_URL}/user/books/bulk`,
+    `${API_URL}/books/bulk`,
     booksData,
     { withCredentials: true }
   );
@@ -33,7 +31,7 @@ export const updateBook = async (
   bookData: any
 ): Promise<APIResponse<any>> => {
   const res = await axios.put<APIResponse<any>>(
-    `${API_URL}/user/books/${id}`,
+    `${API_URL}/books/${id}`,
     bookData,
     { withCredentials: true }
   );
@@ -42,10 +40,9 @@ export const updateBook = async (
 
 // delete book
 export const deleteBook = async (id: string): Promise<APIResponse<null>> => {
-  const res = await axios.delete<APIResponse<null>>(
-    `${API_URL}/user/books/${id}`,
-    { withCredentials: true }
-  );
+  const res = await axios.delete<APIResponse<null>>(`${API_URL}/books/${id}`, {
+    withCredentials: true,
+  });
   return res.data;
 };
 
@@ -54,7 +51,7 @@ export const getBookByIsbn = async (
   isbn: string
 ): Promise<APIResponse<Book>> => {
   const res = await axios.get<APIResponse<Book>>(
-    `${API_URL}/user/books/isbn/${isbn}`,
+    `${API_URL}/books/isbn/${isbn}`,
     { withCredentials: true }
   );
   return res.data;

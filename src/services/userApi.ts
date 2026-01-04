@@ -20,7 +20,7 @@ export const updatePassword = async (
 // get api/user/upload-events
 export const getUploadEvents = async (): Promise<APIResponse<any[]>> => {
   const res = await axios.get<APIResponse<any[]>>(
-    `${API_URL}/user/upload-events`,
+    `${API_URL}/kpi/upload-events`,
     { withCredentials: true }
   );
   return res.data;
@@ -28,7 +28,7 @@ export const getUploadEvents = async (): Promise<APIResponse<any[]>> => {
 
 // get all books
 export const getAllBooks = async (): Promise<APIResponse<any[]>> => {
-  const res = await axios.get<APIResponse<any[]>>(`${API_URL}/user/books/all`, {
+  const res = await axios.get<APIResponse<any[]>>(`${API_URL}/books/all`, {
     withCredentials: true,
   });
   return res.data;
@@ -36,7 +36,7 @@ export const getAllBooks = async (): Promise<APIResponse<any[]>> => {
 
 // get user books
 export const getUserBooks = async (): Promise<APIResponse<Book[]>> => {
-  const res = await axios.get<APIResponse<Book[]>>(`${API_URL}/user/books`, {
+  const res = await axios.get<APIResponse<Book[]>>(`${API_URL}/books`, {
     withCredentials: true,
   });
   console.log(res.status);
@@ -50,7 +50,7 @@ export const getBookEntriesByDateRange = async (
 ): Promise<APIResponse<any[]>> => {
   const res = await axios.get<APIResponse<any[]>>(
     // `${API_URL}/user/data/${fromDate}/${toDate}`,
-    `${API_URL}/user/data`,
+    `${API_URL}/kpi/data`,
     {
       params: { fromDate, toDate },
       withCredentials: true,

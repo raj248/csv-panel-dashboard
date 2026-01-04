@@ -16,13 +16,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import {
   Table,
   TableBody,
   TableCell,
@@ -39,7 +32,6 @@ import {
   Loader2,
   FileJson,
 } from "lucide-react";
-import { useUsers } from "@/hooks/useUsers";
 // Assuming you add a bulk create hook or loop through your single create
 import { useCreateBulkBooks } from "@/hooks/useBooks";
 import { toast } from "sonner";
@@ -51,7 +43,6 @@ export function BulkBookUploadDialog() {
   const [previewData, setPreviewData] = useState<any[]>([]);
   const [isParsing, setIsParsing] = useState(false);
 
-  const { data: authors } = useUsers(true);
   const { mutate: createBulkBooks } = useCreateBulkBooks();
 
   const handleParse = () => {

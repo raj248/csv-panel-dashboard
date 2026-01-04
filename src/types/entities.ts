@@ -3,6 +3,7 @@ export interface User {
   name: string;
   email: string;
   password?: string;
+  books: Book[];
   role: "USER" | "ADMIN";
   createdAt: string;
   updatedAt: string;
@@ -19,7 +20,28 @@ export interface Book {
   language?: string;
   category?: string;
   publisher?: string;
+  entries?: Entry[];
   user: User;
   createdAt: string;
   updatedAt: string;
+}
+
+export interface Entry {
+  id: string;
+  book?: Book;
+  createdAt: string;
+  updatedAt: string;
+
+  // Entry Fields
+  openingStock: number;
+  printedCopies: number;
+  soldCopies: number;
+  returnCopies: number;
+  mrp: number;
+  amount: number;
+  complimentaryDamage: number;
+  closingStock: number;
+
+  fromDate?: string;
+  toDate?: string;
 }

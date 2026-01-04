@@ -27,31 +27,7 @@ const Authors: React.FC = () => {
       </div>
 
       <DataTable
-        columns={[
-          ...columns,
-          // {
-          //   id: "actions",
-          //   header: "Actions",
-          //   cell: (row) => {
-          //     return (
-          //       <div className="flex gap-2">
-          //         <button
-          //           className="text-blue-500 hover:underline"
-          //           onClick={() => console.log("Edit", row.row.original)}
-          //         >
-          //           Edit
-          //         </button>
-          //         <button
-          //           className="text-red-500 hover:underline"
-          //           onClick={() => console.log("Delete", row.row.original)}
-          //         >
-          //           Delete
-          //         </button>
-          //       </div>
-          //     );
-          //   },
-          // },
-        ]}
+        columns={[...columns]}
         data={users.data}
         tableType="user"
         onRowClick={(user) => navigate(`/admin/authors/${user.id}`)}

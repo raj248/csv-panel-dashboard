@@ -25,7 +25,7 @@ export const getAllUploadEvents = async (): Promise<
   APIResponse<AllEvents[]>
 > => {
   const res = await axios.get<APIResponse<AllEvents[]>>(
-    `${API_URL}/user/upload-events/all`,
+    `${API_URL}/kpi/upload-events/all`,
     {
       withCredentials: true,
     }

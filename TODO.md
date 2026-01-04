@@ -1,4 +1,8 @@
-- add book if the isbn not found
+- IMPLEMENT: Trash
+
+- Update LOGIN page
+- Update Profile page
+
 - in login.tsx: redirect based on user role
 
 admin pages
